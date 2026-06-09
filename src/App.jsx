@@ -61,6 +61,7 @@ export default function App() {
 
   useLayoutEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const mobileViewport = window.matchMedia('(max-width: 767px)').matches
     const nodes = [
       sceneRef.current,
       productRef.current,
@@ -75,7 +76,7 @@ export default function App() {
       gsap.set(copyRefs.current, { autoAlpha: 0, y: 24 })
       gsap.set(copyRefs.current[0], { autoAlpha: 1, y: 0 })
       gsap.set(labelRefs.current, { autoAlpha: 0, y: 12 })
-      gsap.set(productRef.current, { y: 0, scale: 1, rotateX: 54 })
+      gsap.set(productRef.current, { y: 0, scale: 1, rotateX: mobileViewport ? 48 : 54 })
       gsap.set(topRef.current, { z: 58, y: -14 })
       gsap.set(fillingRef.current, { z: 14, y: 6 })
       gsap.set(bottomRef.current, { z: -56, y: 26 })
@@ -88,8 +89,8 @@ export default function App() {
         { isMobile: '(max-width: 767px)', isDesktop: '(min-width: 768px)' },
         (self) => {
           const mobile = self.conditions.isMobile
-          const lift = mobile ? 96 : 158
-          const depth = mobile ? 128 : 225
+          const lift = mobile ? 72 : 158
+          const depth = mobile ? 96 : 225
           const closedTop = mobile ? 34 : 58
           const closedBottom = mobile ? -42 : -56
           const closedTopY = mobile ? -12 : -14
@@ -112,7 +113,7 @@ export default function App() {
             },
           })
 
-          tl.to(productRef.current, { scale: mobile ? 1.14 : 1.18, y: mobile ? -12 : -20, duration: 1 }, 0)
+          tl.to(productRef.current, { scale: mobile ? 1.02 : 1.18, y: mobile ? -6 : -20, duration: 1 }, 0)
             .to(copyRefs.current[0], { autoAlpha: 0, y: -18, duration: 0.35 }, 0.72)
             .to(copyRefs.current[1], { autoAlpha: 1, y: 0, duration: 0.35 }, 0.86)
             .to(topRef.current, { z: depth, y: -lift, duration: 1.25 }, 0.95)
@@ -120,19 +121,19 @@ export default function App() {
             .to(bottomRef.current, { z: -depth * 0.72, y: lift * 0.72, duration: 1.25 }, 0.95)
             .to(shadowRef.current, { scale: 1.5, opacity: 0.19, duration: 1.1 }, 0.95)
             .to(labelRefs.current, { autoAlpha: 1, y: 0, stagger: 0.09, duration: 0.4 }, 1.25)
-            .to(productRef.current, { y: mobile ? -36 : -56, duration: 1 }, 1.85)
+            .to(productRef.current, { y: mobile ? -18 : -56, duration: 1 }, 1.85)
             .to(labelRefs.current, { autoAlpha: 0, y: -10, stagger: 0.05, duration: 0.35 }, 2.05)
             .to(topRef.current, { z: closedTop, y: closedTopY, duration: 0.85 }, 2.35)
             .to(fillingRef.current, { z: closedFillZ, y: closedFillY, duration: 0.85 }, 2.35)
             .to(bottomRef.current, { z: closedBottom, y: closedBottomY, duration: 0.85 }, 2.35)
             .to(copyRefs.current[1], { autoAlpha: 0, y: -18, duration: 0.35 }, 2.45)
             .to(copyRefs.current[2], { autoAlpha: 1, y: 0, duration: 0.35 }, 2.6)
-            .to(productRef.current, { scale: mobile ? 1.03 : 1.07, y: 0, duration: 0.8 }, 2.65)
+            .to(productRef.current, { scale: mobile ? 0.96 : 1.07, y: 0, duration: 0.8 }, 2.65)
             .to(copyRefs.current[2], { autoAlpha: 0, y: -18, duration: 0.35 }, 3.32)
             .to(copyRefs.current[3], { autoAlpha: 1, y: 0, duration: 0.35 }, 3.5)
             .to(topRef.current, { z: mobile ? 30 : 48, y: mobile ? -10 : -12, duration: 0.65 }, 3.48)
             .to(bottomRef.current, { z: mobile ? -16 : -24, y: mobile ? 11 : 16, duration: 0.65 }, 3.48)
-            .to(productRef.current, { scale: mobile ? 0.88 : 0.92, y: mobile ? 24 : 34, duration: 0.9 }, 3.55)
+            .to(productRef.current, { scale: mobile ? 0.82 : 0.92, y: mobile ? 10 : 34, duration: 0.9 }, 3.55)
             .to(shadowRef.current, { scale: 1.1, opacity: 0.36, duration: 0.7 }, 3.55)
         }
       )
@@ -154,7 +155,7 @@ export default function App() {
   }, [currentFilling])
 
   return (
-    <main className="premium-experience">
+    <main className="premium-experience" data-chapter={chapters[activeChapter].id}>
       <nav className="chapter-progress" aria-label="Story progress">
         {chapters.map((chapter, index) => (
           <a
