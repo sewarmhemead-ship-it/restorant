@@ -21,6 +21,30 @@ export const ui = {
     ctaStudio: 'Sandwich anpassen — 3D Studio',
     ctaIdea: 'Die Idee entdecken',
     ideaKicker: 'DAS KONZEPT',
+    // قسم «تشريح الستاك» — الفكرة تُرى لا تُقرأ
+    anatomy: {
+      kicker: 'DAS PRINZIP',
+      title: 'Kein Brot. Manakish.',
+      layers: [
+        {
+          num: '01',
+          title: 'Der Charakter',
+          text: "Manakish mit Belag — Za'atar, Muhammara, Käse oder Lahm bi Ajeen.",
+        },
+        {
+          num: '02',
+          title: 'Deine Mitte',
+          text: 'Frische Bio-Zutaten — du stellst sie selbst zusammen.',
+        },
+        {
+          num: '03',
+          title: 'Die Basis',
+          text: 'Eine handgemachte Manakish ersetzt das Brot.',
+        },
+      ],
+      statement: 'Tradition trifft modernes Sandwich-Konzept.',
+      traits: 'Bio-zertifiziert · Levantinisches Handwerk · Kein Fast Food',
+    },
     productsKicker: 'DIE VARIANTEN',
     productsTitle: 'Vier Charaktere. Ein Stack.',
     productsSub:

@@ -1086,72 +1086,134 @@
   line-height: 1.7;
 }
 
-.steps-grid {
+/* تشريح الستاك — الفكرة تُرى لا تُقرأ */
+.anatomy {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
-}
-
-.step-card {
-  padding: 1.7rem 1.4rem;
-  border: 1px solid rgba(245, 240, 230, 0.1);
-  border-radius: 1.25rem;
-  background: rgba(245, 240, 230, 0.035);
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  margin-top: clamp(2.4rem, 5vw, 4rem);
   text-align: start;
 }
 
-.step-card__num {
-  display: block;
+.anatomy__visual {
+  position: relative;
+  aspect-ratio: 1;
+  perspective: 1300px;
+}
+
+.anatomy__layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+/* وضعية منفصلة افتراضياً — لعمل JS معطّل أو reduced-motion */
+.anatomy__layer--top {
+  z-index: 3;
+  transform: translateY(-104px);
+}
+
+.anatomy__layer--mid {
+  z-index: 2;
+}
+
+.anatomy__layer--base {
+  z-index: 1;
+  transform: translateY(104px);
+}
+
+.anatomy__layer img {
+  width: 74%;
+  height: auto;
+  transform: rotateX(54deg);
+  filter:
+    drop-shadow(0 30px 34px rgba(0, 0, 0, 0.44))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.06));
+}
+
+.anatomy__layer--mid img {
+  width: 62%;
+}
+
+.anatomy__notes {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.2rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.anatomy-note {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding-inline-start: 4.2rem;
+}
+
+/* الخط التوضيحي الذهبي الرفيع باتجاه المنتج */
+.anatomy-note::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.85rem;
+  width: 3.4rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(215, 185, 120, 0.65));
+}
+
+.anatomy-note__num {
+  padding-top: 0.18rem;
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 900;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
 }
 
-.step-card h3 {
-  margin: 0.7rem 0 0.45rem;
-  font-size: 1.12rem;
+.anatomy-note h3 {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
   font-weight: 800;
 }
 
-.step-card p {
-  margin: 0;
+.anatomy-note p {
+  margin: 0.4rem 0 0;
   color: var(--cream-soft);
-  font-size: 0.92rem;
+  font-size: 0.93rem;
   line-height: 1.6;
+  max-width: 24rem;
 }
 
-.pillars-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+.anatomy__statement {
+  position: relative;
+  margin: clamp(3.4rem, 7vw, 5.5rem) auto 0;
+  max-width: 46rem;
+  font-size: clamp(1.45rem, 3vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1.16;
+  text-wrap: balance;
 }
 
-.pillar-card {
-  padding: 1.4rem 1.2rem;
-  border-radius: 1.25rem;
-  background: rgba(120, 131, 95, 0.08);
-  border: 1px solid rgba(120, 131, 95, 0.18);
-  text-align: start;
+.anatomy__statement::before {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 1px;
+  margin: 0 auto 1.6rem;
+  background: linear-gradient(90deg, transparent, rgba(215, 185, 120, 0.75), transparent);
 }
 
-.pillar-card span {
-  font-size: 1.5rem;
-}
-
-.pillar-card h3 {
-  margin: 0.55rem 0 0.35rem;
-  font-size: 1rem;
-  font-weight: 800;
-}
-
-.pillar-card p {
-  margin: 0;
-  color: var(--cream-soft);
-  font-size: 0.88rem;
-  line-height: 1.55;
+.anatomy__traits {
+  margin: 1.3rem 0 0;
+  color: rgba(245, 240, 230, 0.48);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 /* بطاقات المنتجات */
@@ -1331,9 +1393,22 @@
 }
 
 @media (max-width: 860px) {
-  .steps-grid,
-  .pillars-row {
+  .anatomy {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .anatomy__visual {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .anatomy-note {
+    padding-inline-start: 2.6rem;
+  }
+
+  .anatomy-note::before {
+    width: 1.8rem;
   }
 
   .product-grid {

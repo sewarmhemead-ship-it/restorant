@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '../lib/gsap'
-import { brand, ui, fillingOptions, pillars } from '../data/content'
+import { brand, ui, fillingOptions } from '../data/content'
 
 /**
  * صفحة العرض — القسم الأول من الموقع:
@@ -26,6 +26,37 @@ export default function LandingPage({ onOpenStudio }) {
             duration: 0.95,
             ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 86%' },
+          }
+        )
+      })
+
+      // تشريح الستاك: الطبقات تنفصل بنعومة مع السكرول (scrub خفيف، بلا تثبيت)
+      const anatomyTrigger = {
+        trigger: '.anatomy',
+        start: 'top 82%',
+        end: 'center 42%',
+        scrub: 0.7,
+      }
+      gsap.fromTo(
+        '.anatomy__layer--top',
+        { y: 30 },
+        { y: -118, ease: 'none', scrollTrigger: anatomyTrigger }
+      )
+      gsap.fromTo(
+        '.anatomy__layer--base',
+        { y: -30 },
+        { y: 118, ease: 'none', scrollTrigger: { ...anatomyTrigger } }
+      )
+      gsap.utils.toArray('.anatomy-note').forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { autoAlpha: 0, x: 28 },
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.anatomy', start: `top ${78 - i * 9}%` },
           }
         )
       })
@@ -90,31 +121,39 @@ export default function LandingPage({ onOpenStudio }) {
         </div>
       </section>
 
-      {/* ─── الفكرة ─── */}
-      <section id="idee" className="landing-section">
-        <p className="kicker reveal">{ui.landing.ideaKicker}</p>
-        <h2 className="reveal">{ui.concept.title}</h2>
-        <p className="landing-section__sub reveal">{ui.concept.intro}</p>
+      {/* ─── الفكرة: تشريح الستاك — تُرى لا تُقرأ ─── */}
+      <section id="idee" className="landing-section landing-section--anatomy">
+        <p className="kicker reveal">{ui.landing.anatomy.kicker}</p>
+        <h2 className="reveal">{ui.landing.anatomy.title}</h2>
 
-        <div className="steps-grid">
-          {ui.concept.steps.map((step) => (
-            <article key={step.num} className="step-card reveal">
-              <span className="step-card__num">{step.num}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </article>
-          ))}
+        <div className="anatomy">
+          <div className="anatomy__visual" aria-hidden="true">
+            <div className="anatomy__layer anatomy__layer--top">
+              <img src="/assets/filling-zaatar.png" alt="" loading="lazy" />
+            </div>
+            <div className="anatomy__layer anatomy__layer--mid">
+              <img src="/assets/filling.png" alt="" loading="lazy" />
+            </div>
+            <div className="anatomy__layer anatomy__layer--base">
+              <img src="/assets/manakish-bottom.png" alt="" loading="lazy" />
+            </div>
+          </div>
+
+          <ol className="anatomy__notes">
+            {ui.landing.anatomy.layers.map((layer) => (
+              <li key={layer.num} className="anatomy-note">
+                <span className="anatomy-note__num">{layer.num}</span>
+                <div>
+                  <h3>{layer.title}</h3>
+                  <p>{layer.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        <div className="pillars-row">
-          {pillars.map((p) => (
-            <article key={p.title} className="pillar-card reveal">
-              <span aria-hidden="true">{p.icon}</span>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </article>
-          ))}
-        </div>
+        <p className="anatomy__statement reveal">{ui.landing.anatomy.statement}</p>
+        <p className="anatomy__traits reveal">{ui.landing.anatomy.traits}</p>
       </section>
 
       {/* ─── المنتجات: صور حقيقية لكل نكهة ─── */}
