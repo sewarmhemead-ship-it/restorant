@@ -8,6 +8,31 @@ export const brand = {
 
 export const ui = {
   conceptBadge: 'Konzeptpräsentation',
+
+  // صفحة العرض (Landing) — القسم الأول: صور المنتجات + الفكرة
+  landing: {
+    navIdea: 'Die Idee',
+    navProducts: 'Produkte',
+    navStudio: '3D Studio',
+    heroKicker: 'THE BAKERY — KONZEPTPRÄSENTATION',
+    heroTitle: 'Der Levantinische Bio Stack',
+    heroSub:
+      'Syrische Manakish, neu gedacht — drei Schichten, Bio-Qualität, unendliche Kombinationen.',
+    ctaStudio: 'Sandwich anpassen — 3D Studio',
+    ctaIdea: 'Die Idee entdecken',
+    ideaKicker: 'DAS KONZEPT',
+    productsKicker: 'DIE VARIANTEN',
+    productsTitle: 'Vier Charaktere. Ein Stack.',
+    productsSub:
+      'Jede Manakish-Variante verändert den Charakter des Stacks — von herb-authentisch bis mild-cremig.',
+    productCta: 'Im 3D Studio ansehen →',
+    bigCtaKicker: 'INTERAKTIV',
+    bigCtaTitle: 'Stell deinen Stack zusammen.',
+    bigCtaText:
+      'Erlebe die Schichten in 3D — trennen, erkunden und deine Lieblings-Manakish wählen.',
+    bigCtaButton: '3D Studio öffnen',
+    backToOverview: '← Übersicht',
+  },
   nav: {
     concept: 'Die Idee',
     configurator: 'Konfigurator',
@@ -92,6 +117,7 @@ export const fillingOptions = [
     swatch: 'linear-gradient(135deg, #9E4A3A 0%, #C0392B 50%, #7A3B1E 100%)',
     placeholder: 'filling',
     image: '/assets/filling-muhammara.png',
+    hero: '/assets/photos/hero-muhammara.webp',
   },
   {
     id: 'lahm',
@@ -102,6 +128,7 @@ export const fillingOptions = [
     swatch: 'linear-gradient(135deg, #6B4423 0%, #9E4A3A 45%, #5C6B4A 100%)',
     placeholder: 'filling',
     image: '/assets/filling-lahm.png',
+    hero: '/assets/photos/hero-lahm.webp',
   },
   {
     id: 'labneh',
@@ -112,6 +139,7 @@ export const fillingOptions = [
     swatch: 'linear-gradient(135deg, #F5F0E6 0%, #E8E2D6 40%, #5C6B4A 100%)',
     placeholder: 'filling',
     image: '/assets/filling-labneh.png',
+    hero: '/assets/photos/hero-labneh.webp',
   },
   {
     id: 'zaatar',
@@ -122,6 +150,7 @@ export const fillingOptions = [
     swatch: 'linear-gradient(135deg, #5C6B4A 0%, #78835f 50%, #3d4a32 100%)',
     placeholder: 'filling',
     image: '/assets/filling-zaatar.png',
+    hero: '/assets/photos/hero-zaatar.webp',
   },
 ]
 
